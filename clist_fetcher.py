@@ -1,9 +1,16 @@
+import os
 import requests
 from datetime import datetime, timedelta, timezone
 
-# Clist API Credentials
-USERNAME = 'anish_sarmah'
-API_KEY = 'a96dd18ec88fd26a6a0d277ac06ac209c344a8f2'
+# Clist API Credentials — loaded from environment variables (never hardcode!)
+USERNAME = os.environ.get('CLIST_USERNAME')
+API_KEY  = os.environ.get('CLIST_API_KEY')
+
+if not USERNAME or not API_KEY:
+    raise EnvironmentError(
+        "Missing Clist API credentials! "
+        "Set CLIST_USERNAME and CLIST_API_KEY environment variables."
+    )
 
 # Target resources (platforms)
 TARGET_RESOURCES = [
