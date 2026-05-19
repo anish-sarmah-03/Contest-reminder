@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.env
+
+# Google OAuth secrets - NEVER commit these!
+credentials.json
+token.json
+
+# IDE
+.vscode/
+.idea/
