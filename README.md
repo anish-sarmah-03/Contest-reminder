@@ -190,11 +190,3 @@ You can also trigger it manually anytime:
 | [GitHub Actions](https://github.com/features/actions) | Daily automation |
 
 ---
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-<p align="center">Made with ❤️ by <a href="https://github.com/anish-sarmah-03">anish-sarmah-03</a></p>
