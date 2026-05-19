@@ -20,6 +20,7 @@ The script runs **every day at midnight UTC** via **GitHub Actions** — complet
 - ⏰ **30-minute pop-up reminders** — Never miss a contest start
 - 🚫 **Duplicate prevention** — Skips events already added to your calendar
 - 🎯 **Platforms supported:** Codeforces, CodeChef, LeetCode
+- 🔒 **Secure by design** — All credentials stored as environment variables, never hardcoded
 
 ---
 
@@ -86,15 +87,30 @@ pip install -r requirements.txt
 1. Sign up at [clist.by](https://clist.by)
 2. Go to your profile → **API** section
 3. Copy your **username** and **API key**
-4. Open `clist_fetcher.py` and replace:
-   ```python
-   USERNAME = 'your_clist_username'
-   API_KEY  = 'your_clist_api_key'
-   ```
 
 ---
 
-### Step 5 — Set Up Google Calendar API
+### Step 5 — Set Environment Variables
+
+The project reads credentials from environment variables. Set them before running:
+
+**On Windows (PowerShell):**
+```powershell
+$env:CLIST_USERNAME = "your_clist_username"
+$env:CLIST_API_KEY  = "your_clist_api_key"
+```
+
+**On Mac/Linux:**
+```bash
+export CLIST_USERNAME="your_clist_username"
+export CLIST_API_KEY="your_clist_api_key"
+```
+
+> 💡 These variables only last for the current terminal session. You can also add them permanently to your shell profile (`.bashrc`, `.zshrc`) or Windows system environment settings.
+
+---
+
+### Step 6 — Set Up Google Calendar API
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project (or use an existing one)
@@ -108,7 +124,7 @@ pip install -r requirements.txt
 
 ---
 
-### Step 6 — Authenticate with Google Calendar
+### Step 7 — Authenticate with Google Calendar
 
 Run the script once to authenticate and generate `token.json`:
 
@@ -116,13 +132,13 @@ Run the script once to authenticate and generate `token.json`:
 python main.py
 ```
 
-A browser window will open asking you to log in to your Google account and grant Calendar access. After approving, `token.json` will be created automatically. The script will then sync contests to your calendar.
+A browser window will open asking you to log in to your Google account and grant Calendar access. After approving, `token.json` will be created automatically. The script will then sync upcoming contests to your calendar.
 
 > ⚠️ **Important:** Never commit `credentials.json` or `token.json` to GitHub. They are already listed in `.gitignore`.
 
 ---
 
-### Step 7 — Run Anytime
+### Step 8 — Run Anytime
 
 After the first-time setup, simply run:
 
@@ -132,21 +148,34 @@ python main.py
 
 ---
 
-## ⚙️ Automating with GitHub Actions (Optional)
+## ⚙️ Automating with GitHub Actions
 
-Want it to run automatically every day without opening your laptop? Use GitHub Actions:
+This repo is pre-configured to run automatically every day at **midnight UTC** via GitHub Actions — no local machine needed.
 
-1. Push your code to GitHub (without `credentials.json` or `token.json`)
-2. Go to **Settings** → **Secrets and variables** → **Actions**
-3. Add a secret named `GOOGLE_CALENDAR_TOKEN` with the contents of your `token.json`
-4. The workflow in `.github/workflows/schedule.yml` will run daily at midnight UTC automatically
+To set it up on your own fork:
+
+1. Fork this repository
+2. Go to your fork → **Settings** → **Secrets and variables** → **Actions**
+3. Add the following **3 secrets**:
+
+| Secret Name | How to get it |
+|---|---|
+| `CLIST_USERNAME` | Your Clist.by username |
+| `CLIST_API_KEY` | Your Clist.by API key (from your profile page) |
+| `GOOGLE_CALENDAR_TOKEN` | Full contents of `token.json` generated in Step 7 above |
+
+4. The workflow in `.github/workflows/schedule.yml` will now run automatically every day ✅
+
+You can also trigger it manually anytime:
+- Go to **Actions** tab → **Daily Contest Sync** → **Run workflow**
 
 ---
 
 ## 🔒 Security Notes
 
 - `credentials.json` and `token.json` are excluded from version control via `.gitignore`
-- When using GitHub Actions, the token is stored securely as an **encrypted GitHub Secret**
+- Clist API credentials are read from **environment variables**, never hardcoded
+- When using GitHub Actions, all secrets are stored as **encrypted GitHub Secrets**
 - Never share your API keys or OAuth tokens publicly
 
 ---
