@@ -117,7 +117,12 @@ export CLIST_API_KEY="your_clist_api_key"
 3. Enable the **Google Calendar API**:
    - Navigate to **APIs & Services** → **Enable APIs and Services**
    - Search for "Google Calendar API" → Enable it
-4. Create **OAuth 2.0 credentials**:
+4. **Configure OAuth Consent Screen**:
+   - Go to **APIs & Services** → **OAuth consent screen**
+   - Choose **External** and click Create
+   - Fill in the required app details (name, email)
+   - Add your Google email address under **Test users** (This is critical to avoid the "Access blocked" error!)
+5. Create **OAuth 2.0 credentials**:
    - Go to **APIs & Services** → **Credentials** → **Create Credentials** → **OAuth Client ID**
    - Application type: **Desktop app**
    - Download the credentials file and save it as **`credentials.json`** in the project root
