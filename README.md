@@ -121,7 +121,7 @@ export CLIST_API_KEY="your_clist_api_key"
    - Go to **APIs & Services** → **OAuth consent screen**
    - Choose **External** and click Create
    - Fill in the required app details (name, email)
-   - Go to the **Audience** tab in the OAuth consent screen and click **Publish App** to move the app from "Testing" to "In production". This allows anyone (including friends) to use the app without an "Access blocked" error. (Note: They may see an "Unverified app" warning, which they can bypass by clicking "Advanced" → "Go to App").
+   - Go to the **Audience** tab in the OAuth consent screen and click **Publish App** to move the app from "Testing" to "In production". This allows anyone  to use the app without an "Access blocked" error. (Note: You may see an "Unverified app" warning, which you can bypass by clicking "Advanced" → "Go to App").
 5. Create **OAuth 2.0 credentials**:
    - Go to **APIs & Services** → **Credentials** → **Create Credentials** → **OAuth Client ID**
    - Application type: **Desktop app**
