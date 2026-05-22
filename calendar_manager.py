@@ -104,7 +104,7 @@ def add_contest_event(service, contest):
 
     except HttpError as error:
         print(f'An error occurred adding the event: {error}')
-        return None
+        raise error
 
 if __name__ == '__main__':
     # Simple test logic
