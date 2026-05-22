@@ -59,7 +59,7 @@ def fetch_upcoming_contests(days_ahead=14):
         return filtered_contests
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from Clist API: {e}")
-        return []
+        raise e
 
 if __name__ == "__main__":
     contests = fetch_upcoming_contests()
