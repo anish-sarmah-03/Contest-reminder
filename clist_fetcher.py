@@ -32,10 +32,10 @@ def fetch_upcoming_contests(days_ahead=14):
     start_time_gte = now.strftime('%Y-%m-%dT%H:%M:%S')
     start_time_lte = future.strftime('%Y-%m-%dT%H:%M:%S')
     
-    headers = {
-        'Authorization': f'ApiKey {USERNAME}:{API_KEY}'
+  headers = {
+        'Authorization': f'ApiKey {USERNAME}:{API_KEY}',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
-    
     params = {
         'resource__in': ','.join(TARGET_RESOURCES),
         'start__gte': start_time_gte,
