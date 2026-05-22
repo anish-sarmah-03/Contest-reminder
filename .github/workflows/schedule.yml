@@ -29,5 +29,9 @@ jobs:
           echo '${{ secrets.GOOGLE_CALENDAR_TOKEN }}' > token.json
 
       - name: Run Sync Script
+        env:
+          CLIST_USERNAME: ${{ secrets.CLIST_USERNAME }}
+          CLIST_API_KEY: ${{ secrets.CLIST_API_KEY }}
         run: python main.py
+
 
